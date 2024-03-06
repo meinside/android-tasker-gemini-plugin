@@ -21,6 +21,10 @@ In Tasker,
 * Add an action > select action: `Gemini Text Generation`
 * Configuration > put your API key and prompt
   * prompt can include [Tasker variables](https://tasker.joaoapps.com/userguide/en/variables.html)
+ 
+<img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/d5f91071-a14d-4cae-bfc2-80b82fa13efc" width="320">
+<img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/d9383748-1373-4638-84a5-5b5efce497a7" width="320">
+<img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/50c9e387-19e9-46af-85f7-c23546f95bdb" width="320">
 
 ### For text generation with prompt text and images
 
@@ -36,9 +40,12 @@ This resulting variable can be referenced in following actions or other tasks.
 
 (eg. sending it as an email, showing it as an Android notification, or etc.)
 
+<img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/f5af2b9c-0f35-45fb-958e-c86d6bb03845" width="320">
+<img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/43cb8605-0f4e-4e62-86aa-f11b5a578497" width="320">
+
 ## Todos / Improvements
 
-- [ ] Add screenshots for guiding configuration
+- [X] Add screenshots for guiding configuration
 - [ ] Add some more useful usages
 - [ ] Add tests
 - [ ] Add an action which generates text from prompt and images using model `gemini-pro-vision`
