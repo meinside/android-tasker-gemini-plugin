@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_api_key" />
+
+    <EditText
+        android:id="@+id/editTextApiKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="@string/gemini_api_key_hint"
+        android:inputType="textNoSuggestions" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_prompt" />
+
+    <EditText
+        android:id="@+id/editTextPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:gravity="top|start"
+        android:lines="6"
+        android:minLines="4"
+        android:maxLines="8"
+        android:scrollbars="vertical"
+        android:hint="@string/gemini_prompt_hint"
+        android:inputType="textMultiLine|textNoSuggestions" />
+
+</LinearLayout>

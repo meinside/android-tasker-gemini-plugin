@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name" translatable="false">Tasker Gemini Plugin</string>
+
+    <!-- actions -->
+    <string name="action_name">Gemini Text Generation</string>
+
+    <!-- configuration / inputs -->
+    <string name="gemini_api_key">Google AI API key</string>
+    <string name="gemini_api_key_hint">API Key for Gemini</string>
+    <string name="gemini_prompt">Prompt for Gemini API</string>
+    <string name="gemini_prompt_hint">Prompt text with Tasker variables (eg. %DATE, %SMSRN, etc.)</string>
+    <string name="config_finished">Values saved.</string>
+
+    <!-- outputs -->
+    <string name="gemini_text">Generated text from Gemini</string>
+
+    <!-- errors -->
+    <string name="error_message_no_api_key">Error: No API key is configured.</string>
+    <string name="error_message_no_prompt">Error: No prompt is configured.</string>
+    <string name="error_message_blocked">Error: Prompt was blocked (%s).</string>
+    <string name="error_message_unknown">There was an unknown error.</string>
+</resources>
