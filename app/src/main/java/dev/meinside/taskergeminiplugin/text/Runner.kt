@@ -12,19 +12,19 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
 
 class Runner : TaskerPluginRunnerAction<Input, Output>() {
-    private val generationModel: String = "gemini-pro"
-
     override fun run(context: Context, input: TaskerInput<Input>): TaskerPluginResult<Output> {
         var generated: String? = null
 
-        if (input.regular.apiKey.trim() == "") {
+        if (input.regular.model.trim() == "") {
+            generated = context.getString(R.string.error_message_no_model)
+        } else if (input.regular.apiKey.trim() == "") {
             generated = context.getString(R.string.error_message_no_api_key)
         } else if (input.regular.prompt.trim() == "") {
             generated = context.getString(R.string.error_message_no_prompt)
         } else {
             runBlocking {
                 supervisorScope {
-                    val model = GenerativeModel(modelName = generationModel, apiKey = input.regular.apiKey)
+                    val model = GenerativeModel(modelName = input.regular.model, apiKey = input.regular.apiKey)
                     val res = model.generateContent(input.regular.prompt)
 
                     res.promptFeedback?.blockReason?.let {
