@@ -5,6 +5,7 @@
     <string name="action_name">Gemini Text Generation</string>
 
     <!-- configuration / inputs -->
+    <string name="gemini_model">Gemini Model</string>
     <string name="gemini_api_key">Google AI API key</string>
     <string name="gemini_api_key_hint">API Key for Gemini</string>
     <string name="gemini_prompt">Prompt for Gemini API</string>
@@ -15,6 +16,7 @@
     <string name="gemini_text">Generated text from Gemini</string>
 
     <!-- errors -->
+    <string name="error_message_no_model">Error: No Gemini model is configured.</string>
     <string name="error_message_no_api_key">Error: No API key is configured.</string>
     <string name="error_message_no_prompt">Error: No prompt is configured.</string>
     <string name="error_message_blocked">Error: Prompt was blocked (%s).</string>

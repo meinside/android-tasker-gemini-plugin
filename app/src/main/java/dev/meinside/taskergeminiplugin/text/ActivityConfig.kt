@@ -7,6 +7,8 @@ import com.joaomgcd.taskerpluginlibrary.input.TaskerInput
 import com.joaomgcd.taskerpluginsample.tasker.ActivityConfigTasker
 import dev.meinside.taskergeminiplugin.databinding.ActivityConfigBinding
 
+const val DEFAULT_GEMINI_MODEL = "gemini-1.5-flash-latest"
+
 class ActivityConfig : ActivityConfigTasker<Input, Output, Runner, ActionHelper, ActivityConfigBinding>() {
     override fun getNewHelper(config: TaskerPluginConfig<Input>) = ActionHelper(this)
     override fun inflateBinding(layoutInflater: LayoutInflater): ActivityConfigBinding = ActivityConfigBinding.inflate(layoutInflater)
@@ -24,9 +26,13 @@ class ActivityConfig : ActivityConfigTasker<Input, Output, Runner, ActionHelper,
     }
 
     override val inputForTasker: TaskerInput<Input>
-        get() = TaskerInput(Input(binding?.editTextApiKey?.text?.toString() ?: "", binding?.editTextPrompt?.text?.toString() ?: ""))
+        get() = TaskerInput(Input(
+            binding?.editTextModel?.text?.toString() ?: DEFAULT_GEMINI_MODEL,
+            binding?.editTextApiKey?.text?.toString() ?: "",
+            binding?.editTextPrompt?.text?.toString() ?: ""))
 
     override fun assignFromInput(input: TaskerInput<Input>): Unit = input.regular.run {
+        binding?.editTextModel?.setText(model)
         binding?.editTextApiKey?.setText(apiKey)
         binding?.editTextPrompt?.setText(prompt)
     }

@@ -46,9 +46,10 @@ This resulting variable can be referenced in following actions or other tasks.
 ## Todos / Improvements
 
 - [X] Add screenshots for guiding configuration
+- [X] Support other Gemini models
 - [ ] Add some more useful usages
 - [ ] Add tests
-- [ ] Add an action which generates text from prompt and images using model `gemini-pro-vision`
+- [ ] Add an action which generates text from prompt and images
 
 ## License
 
