@@ -6,6 +6,7 @@
     <string name="action_name">Gemini 텍스트 생성</string>
 
     <!-- configuration / inputs -->
+    <string name="gemini_model">Gemini 모델</string>
     <string name="gemini_api_key">구글 AI API 키</string>
     <string name="gemini_api_key_hint">Gemini API 키</string>
     <string name="gemini_prompt">Gemini API 프롬프트</string>
@@ -16,6 +17,7 @@
     <string name="gemini_text">Gemini가 생성한 텍스트</string>
 
     <!-- errors -->
+    <string name="error_message_no_model">오류: Gemini 모델이 없습니다.</string>
     <string name="error_message_no_api_key">오류: API 키가 없습니다.</string>
     <string name="error_message_no_prompt">오류: 프롬프트가 없습니다.</string>
     <string name="error_message_blocked">오류: 프롬프트가 차단되었습니다 (%s).</string>
