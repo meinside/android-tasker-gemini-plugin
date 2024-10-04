@@ -6,6 +6,7 @@
 
     <!-- configuration / inputs -->
     <string name="gemini_model">Gemini Model</string>
+    <string name="gemini_model_hint">eg. gemini-1.5-flash-latest</string>
     <string name="gemini_api_key">Google AI API key</string>
     <string name="gemini_api_key_hint">API Key for Gemini</string>
     <string name="gemini_prompt">Prompt for Gemini API</string>
