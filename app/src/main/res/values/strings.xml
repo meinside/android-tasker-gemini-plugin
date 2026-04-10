@@ -6,11 +6,19 @@
 
     <!-- configuration / inputs -->
     <string name="gemini_model">Gemini Model</string>
-    <string name="gemini_model_hint">eg. gemini-1.5-flash-latest</string>
+    <string name="gemini_model_hint">eg. gemini-2.5-flash</string>
     <string name="gemini_api_key">Google AI API key</string>
     <string name="gemini_api_key_hint">API Key for Gemini</string>
     <string name="gemini_prompt">Prompt for Gemini API</string>
     <string name="gemini_prompt_hint">Prompt text with Tasker variables (eg. %DATE, %SMSRN, etc.)</string>
+    <string name="gemini_image_path">Image Path (optional)</string>
+    <string name="gemini_image_path_hint">File path to image (eg. %photo_path)</string>
+    <string name="gemini_system_instruction">System Instruction (optional)</string>
+    <string name="gemini_system_instruction_hint">Role or persona for the model (eg. You are a translator)</string>
+    <string name="gemini_temperature">Temperature (optional)</string>
+    <string name="gemini_temperature_hint">0.0 (deterministic) ~ 2.0 (creative), default: 1.0</string>
+    <string name="gemini_max_output_tokens">Max Output Tokens (optional)</string>
+    <string name="gemini_max_output_tokens_hint">Maximum length of the response, default: 2048</string>
     <string name="config_finished">Values saved.</string>
 
     <!-- outputs -->
@@ -21,5 +29,6 @@
     <string name="error_message_no_api_key">Error: No API key is configured.</string>
     <string name="error_message_no_prompt">Error: No prompt is configured.</string>
     <string name="error_message_blocked">Error: Prompt was blocked (%s).</string>
+    <string name="error_message_image_not_found">Error: Image file not found (%s).</string>
     <string name="error_message_unknown">There was an unknown error.</string>
 </resources>
