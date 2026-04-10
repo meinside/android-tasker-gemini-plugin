@@ -27,11 +27,19 @@ class ActivityConfig : ActivityConfigTasker<Input, Output, Runner, ActionHelper,
         get() = TaskerInput(Input(
             binding?.editTextModel?.text?.toString() ?: "",
             binding?.editTextApiKey?.text?.toString() ?: "",
-            binding?.editTextPrompt?.text?.toString() ?: ""))
+            binding?.editTextPrompt?.text?.toString() ?: "",
+            binding?.editTextImagePath?.text?.toString() ?: "",
+            binding?.editTextSystemInstruction?.text?.toString() ?: "",
+            binding?.editTextTemperature?.text?.toString() ?: "",
+            binding?.editTextMaxOutputTokens?.text?.toString() ?: ""))
 
     override fun assignFromInput(input: TaskerInput<Input>): Unit = input.regular.run {
         binding?.editTextModel?.setText(model)
         binding?.editTextApiKey?.setText(apiKey)
         binding?.editTextPrompt?.setText(prompt)
+        binding?.editTextImagePath?.setText(imagePath)
+        binding?.editTextSystemInstruction?.setText(systemInstruction)
+        binding?.editTextTemperature?.setText(temperature)
+        binding?.editTextMaxOutputTokens?.setText(maxOutputTokens)
     }
 }

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -51,4 +56,67 @@
         android:hint="@string/gemini_prompt_hint"
         android:inputType="textMultiLine|textNoSuggestions" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_image_path" />
+
+    <EditText
+        android:id="@+id/editTextImagePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="@string/gemini_image_path_hint"
+        android:inputType="textNoSuggestions" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_system_instruction" />
+
+    <EditText
+        android:id="@+id/editTextSystemInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:gravity="top|start"
+        android:lines="3"
+        android:minLines="2"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:hint="@string/gemini_system_instruction_hint"
+        android:inputType="textMultiLine|textNoSuggestions" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_temperature" />
+
+    <EditText
+        android:id="@+id/editTextTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="@string/gemini_temperature_hint"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/gemini_max_output_tokens" />
+
+    <EditText
+        android:id="@+id/editTextMaxOutputTokens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:hint="@string/gemini_max_output_tokens_hint"
+        android:inputType="number" />
+
 </LinearLayout>
+
+</ScrollView>

@@ -48,6 +48,7 @@ abstract class ActivityConfigTasker<TInput : Any, TOutput : Any, TActionRunner :
         } else super.onKeyDown(keyCode, event)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
     }
 }
