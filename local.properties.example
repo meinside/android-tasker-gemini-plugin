@@ -1,0 +1,9 @@
+# Android SDK path (set automatically by Android Studio, or set manually)
+sdk.dir=/path/to/Android/sdk
+
+# Release signing configuration
+# Fill in these values and save as 'local.properties' (which is gitignored)
+release.keystore.file=/path/to/your/keystore.jks
+release.keystore.password=your_keystore_password
+release.key.alias=your_key_alias
+release.key.password=your_key_password
