@@ -1,6 +1,6 @@
 # Tasker Gemini Plugin
 
-A [Tasker](https://tasker.joaoapps.com/) plugin for generating text from [Google Gemini](https://ai.google.dev/tutorials/android_quickstart) API,
+A [Tasker](https://tasker.joaoapps.com/) plugin for generating text from [Google Gemini](https://ai.google.dev/gemini-api/docs) API,
 
 built with [Tasker Plugins Library](https://tasker.joaoapps.com/pluginslibrary.html).
 
@@ -28,7 +28,23 @@ In Tasker,
 
 ### For text generation with prompt text and images
 
-TODO
+You can pass an image file path for multimodal generation (text + image):
+
+* In the configuration, set **Image Path** to a file path (e.g. `/sdcard/DCIM/photo.jpg`)
+* Tasker variables work here too (e.g. `%photo_path`)
+* Supported formats: JPEG, PNG, WebP, GIF, BMP
+
+When an image path is provided, both the prompt text and the image are sent to the Gemini API together.
+
+### Optional settings
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| **System Instruction** | Set a role or persona for the model (e.g. "You are a translator") | None |
+| **Temperature** | Controls creativity. 0.0 = deterministic, 2.0 = most creative | 1.0 |
+| **Max Output Tokens** | Maximum length of the generated response | 2048 |
+
+All optional settings support Tasker variables.
 
 ## Usage
 
@@ -38,20 +54,39 @@ the generated text will be saved as a Tasker variable named `%gemini_text`.
 
 This resulting variable can be referenced in following actions or other tasks.
 
-(eg. sending it as an email, showing it as an Android notification, or etc.)
+(e.g. sending it as an email, showing it as an Android notification, etc.)
 
 <img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/f5af2b9c-0f35-45fb-958e-c86d6bb03845" width="320">
 <img src="https://github.com/meinside/android-tasker-gemini-plugin/assets/185988/43cb8605-0f4e-4e62-86aa-f11b5a578497" width="320">
+
+## Building
+
+### Debug
+
+```bash
+./gradlew assembleDebug
+```
+
+### Release
+
+1. Copy `local.properties.example` to `local.properties`
+2. Fill in your keystore path and credentials
+3. Build:
+
+```bash
+./gradlew bundleRelease  # AAB for Play Store
+./gradlew assembleRelease # APK
+```
 
 ## Todos / Improvements
 
 - [X] Add screenshots for guiding configuration
 - [X] Support other Gemini models
+- [X] Add tests
+- [X] Add an action which generates text from prompt and images
 - [ ] Add some more useful usages
-- [ ] Add tests
-- [ ] Add an action which generates text from prompt and images
+- [ ] Enable R8 minification for smaller release binary
 
 ## License
 
 MIT
-
