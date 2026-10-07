@@ -20,6 +20,7 @@
     <string name="gemini_temperature_hint">0.0 (결정적) ~ 2.0 (창의적), 기본값: 1.0</string>
     <string name="gemini_max_output_tokens">최대 출력 토큰 수 (선택)</string>
     <string name="gemini_max_output_tokens_hint">응답의 최대 길이, 기본값: 2048</string>
+    <string name="config_save">저장</string>
     <string name="config_finished">저장되었습니다.</string>
 
     <!-- outputs -->

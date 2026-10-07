@@ -19,6 +19,7 @@
     <string name="gemini_temperature_hint">0.0 (deterministic) ~ 2.0 (creative), default: 1.0</string>
     <string name="gemini_max_output_tokens">Max Output Tokens (optional)</string>
     <string name="gemini_max_output_tokens_hint">Maximum length of the response, default: 2048</string>
+    <string name="config_save">Save</string>
     <string name="config_finished">Values saved.</string>
 
     <!-- outputs -->

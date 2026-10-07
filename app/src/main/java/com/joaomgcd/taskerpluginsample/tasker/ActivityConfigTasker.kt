@@ -1,13 +1,15 @@
 package com.joaomgcd.taskerpluginsample.tasker
 
-// from: https://github.com/joaomgcd/TaskerPluginSample/blob/master/app/src/main/java/com/joaomgcd/taskerpluginsample/tasker/ActivityConfigTasker.kt
+// adapted from: https://github.com/joaomgcd/TaskerPluginSample/blob/master/app/src/main/java/com/joaomgcd/taskerpluginsample/tasker/ActivityConfigTasker.kt
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
+import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.viewbinding.ViewBinding
+import com.joaomgcd.taskerpluginlibrary.SimpleResult
 import com.joaomgcd.taskerpluginlibrary.SimpleResultError
 import com.joaomgcd.taskerpluginlibrary.config.TaskerPluginConfig
 import com.joaomgcd.taskerpluginlibrary.config.TaskerPluginConfigHelper
@@ -17,7 +19,7 @@ import com.joaomgcd.taskerpluginlibrary.runner.TaskerPluginRunner
 /**
  * Base class for all the ConfigActivities in this example. This is totally optional. You can use any base class you want as long as it implements TaskerPluginConfig
  */
-abstract class ActivityConfigTasker<TInput : Any, TOutput : Any, TActionRunner : TaskerPluginRunner<TInput, TOutput>, THelper : TaskerPluginConfigHelper<TInput, TOutput, TActionRunner>, TBinding : ViewBinding> : Activity(), TaskerPluginConfig<TInput> {
+abstract class ActivityConfigTasker<TInput : Any, TOutput : Any, TActionRunner : TaskerPluginRunner<TInput, TOutput>, THelper : TaskerPluginConfigHelper<TInput, TOutput, TActionRunner>, TBinding : ViewBinding> : ComponentActivity(), TaskerPluginConfig<TInput> {
     abstract fun getNewHelper(config: TaskerPluginConfig<TInput>): THelper
     protected abstract fun inflateBinding(layoutInflater: LayoutInflater): TBinding?
 
@@ -36,20 +38,36 @@ abstract class ActivityConfigTasker<TInput : Any, TOutput : Any, TActionRunner :
         }
         binding?.root?.let { setContentView(it) }
         taskerHelper.onCreate()
-    }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return if (keyCode == KeyEvent.KEYCODE_BACK && event.repeatCount == 0) {
-            val result = taskerHelper.onBackPressed()
-            if (result is SimpleResultError) {
-                alert("Warning", "Settings are not valid:\n\n${result.message}")
+        // Back saves the configuration. This must go through OnBackPressedDispatcher:
+        // from targetSdk 36 on Android 16+, predictive back no longer delivers
+        // KEYCODE_BACK to onKeyDown() nor calls onBackPressed(), so overriding those
+        // lets the system finish the activity with RESULT_CANCELED and Tasker drops
+        // every change.
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                saveAndFinish()
             }
-            return result.success
-        } else super.onKeyDown(keyCode, event)
+        })
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
+    /**
+     * Returns the configuration to Tasker and finishes, or shows why it cannot.
+     */
+    protected fun saveAndFinish(): SimpleResult {
+        val result = taskerHelper.finishForTasker()
+        if (result is SimpleResultError) {
+            alert("Warning", "Settings are not valid:\n\n${result.message}")
+        }
+        return result
+    }
+
+    /**
+     * Finishes without returning anything, so Tasker keeps the previous configuration.
+     */
+    protected fun cancelAndFinish() {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 }
 
