@@ -18,8 +18,8 @@ android {
         applicationId = "dev.meinside.taskergeminiplugin"
         minSdk = 24
         targetSdk = 37
-        versionCode = 5
-        versionName = "0.0.5"
+        versionCode = 6
+        versionName = "0.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -78,20 +78,23 @@ dependencies {
     implementation("com.joaomgcd:taskerpluginlibrary:0.4.10")
 
     // https://ai.google.dev/gemini-api/docs/sdks
-    implementation("com.google.genai:google-genai:1.62.0")
+    implementation("com.google.genai:google-genai:1.75.0")
 
-    implementation("androidx.core:core-ktx:1.19.0")
+    implementation("androidx.core:core-ktx:1.19.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
+    implementation("androidx.activity:activity:1.13.0")
     implementation("androidx.activity:activity-compose:1.13.0")
-    implementation(platform("androidx.compose:compose-bom:2026.06.01"))
+    implementation(platform("androidx.compose:compose-bom:2026.09.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test:core:1.7.0")
+    androidTestImplementation("androidx.test:runner:1.7.0")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2026.06.01"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2026.09.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")

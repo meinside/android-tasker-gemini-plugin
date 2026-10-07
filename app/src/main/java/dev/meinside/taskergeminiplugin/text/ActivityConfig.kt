@@ -2,6 +2,9 @@ package dev.meinside.taskergeminiplugin.text
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.joaomgcd.taskerpluginlibrary.config.TaskerPluginConfig
 import com.joaomgcd.taskerpluginlibrary.input.TaskerInput
 import com.joaomgcd.taskerpluginsample.tasker.ActivityConfigTasker
@@ -14,13 +17,22 @@ class ActivityConfig : ActivityConfigTasker<Input, Output, Runner, ActionHelper,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = inflateBinding(layoutInflater)
-        if (!isConfigurable) {
-            taskerHelper.finishForTasker()
-            return
+        binding?.let { b ->
+            // targetSdk 35+ draws edge-to-edge: keep the fields and the buttons
+            // clear of the status bar, the navigation bar and the keyboard.
+            ViewCompat.setOnApplyWindowInsetsListener(b.root) { view, insets ->
+                val bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                            or WindowInsetsCompat.Type.displayCutout()
+                            or WindowInsetsCompat.Type.ime()
+                )
+                view.updatePadding(left = bars.left, top = bars.top, right = bars.right, bottom = bars.bottom)
+                WindowInsetsCompat.CONSUMED
+            }
+
+            b.buttonSave.setOnClickListener { saveAndFinish() }
+            b.buttonCancel.setOnClickListener { cancelAndFinish() }
         }
-        binding?.root?.let { setContentView(it) }
-        taskerHelper.onCreate()
     }
 
     override val inputForTasker: TaskerInput<Input>
