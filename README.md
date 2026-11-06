@@ -28,11 +28,17 @@ In Tasker,
 
 ### For text generation with prompt text and images
 
-You can pass an image file path for multimodal generation (text + image):
+You can pass an image for multimodal generation (text + image):
 
-* In the configuration, set **Image Path** to a file path (e.g. `/sdcard/DCIM/photo.jpg`)
+* In the configuration, set **Image Path** to one of:
+  * a file path (e.g. `/sdcard/DCIM/photo.jpg`) or `file://` URI
+  * a `content://` URI (e.g. `content://media/external/images/media/42`)
 * Tasker variables work here too (e.g. `%photo_path`)
 * Supported formats: JPEG, PNG, WebP, GIF, BMP
+
+The plugin needs its own permission to read images of other apps (Tasker's does not carry over):
+tap **Allow** under **Image Path** in the configuration, and allow access to all photos.
+`content://` URIs of other apps' providers can be read only when that app allows it.
 
 When an image path is provided, both the prompt text and the image are sent to the Gemini API together.
 

@@ -12,7 +12,10 @@
     <string name="gemini_prompt">Prompt for Gemini API</string>
     <string name="gemini_prompt_hint">Prompt text with Tasker variables (eg. %DATE, %SMSRN, etc.)</string>
     <string name="gemini_image_path">Image Path (optional)</string>
-    <string name="gemini_image_path_hint">File path to image (eg. %photo_path)</string>
+    <string name="gemini_image_path_hint">File path or content:// URI of image (eg. %photo_path)</string>
+    <string name="image_access_none">Reading images from other apps needs permission.</string>
+    <string name="image_access_limited">Only the photos you picked can be read. Allow all photos to read any image.</string>
+    <string name="image_access_allow">Allow</string>
     <string name="gemini_system_instruction">System Instruction (optional)</string>
     <string name="gemini_system_instruction_hint">Role or persona for the model (eg. You are a translator)</string>
     <string name="gemini_temperature">Temperature (optional)</string>
@@ -31,5 +34,7 @@
     <string name="error_message_no_prompt">Error: No prompt is configured.</string>
     <string name="error_message_blocked">Error: Prompt was blocked (%s).</string>
     <string name="error_message_image_not_found">Error: Image file not found (%s).</string>
+    <string name="error_message_image_no_permission">Error: No permission to read the image (%s). Open this action\'s configuration in Tasker and allow access to all photos.</string>
+    <string name="error_message_image_uri_denied">Error: The app that owns this URI did not allow reading it (%s). Use a file path or a content://media/ URI instead.</string>
     <string name="error_message_unknown">There was an unknown error.</string>
 </resources>

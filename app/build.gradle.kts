@@ -18,8 +18,8 @@ android {
         applicationId = "dev.meinside.taskergeminiplugin"
         minSdk = 24
         targetSdk = 37
-        versionCode = 6
-        versionName = "0.0.6"
+        versionCode = 7
+        versionName = "0.0.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -78,7 +78,7 @@ dependencies {
     implementation("com.joaomgcd:taskerpluginlibrary:0.4.10")
 
     // https://ai.google.dev/gemini-api/docs/sdks
-    implementation("com.google.genai:google-genai:1.75.0")
+    implementation("com.google.genai:google-genai:1.80.0")
 
     implementation("androidx.core:core-ktx:1.19.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")

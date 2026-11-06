@@ -9,12 +9,16 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.Visibility
+import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.joaomgcd.taskerpluginlibrary.TaskerPluginConstants
 import dev.meinside.taskergeminiplugin.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assume.assumeFalse
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -71,5 +75,21 @@ class ActivityConfigTest {
         fillIn()
         onView(withId(R.id.buttonCancel)).perform(click())
         assertEquals(Activity.RESULT_CANCELED, scenario.result.resultCode)
+    }
+
+    @Test
+    fun imagePath_offersImageAccess_whilePermissionIsMissing() {
+        assumeFalse(ImageAccess.hasFullAccess(ApplicationProvider.getApplicationContext()))
+        launch()
+        onView(withId(R.id.layoutImageAccess)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.editTextImagePath)).perform(replaceText("/sdcard/DCIM/photo.jpg"))
+        onView(withId(R.id.layoutImageAccess)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+    }
+
+    @Test
+    fun otherProviderUri_doesNotOfferImageAccess() {
+        launch()
+        onView(withId(R.id.editTextImagePath)).perform(replaceText("content://com.example.provider/image"))
+        onView(withId(R.id.layoutImageAccess)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 }
