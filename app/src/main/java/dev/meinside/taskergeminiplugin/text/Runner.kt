@@ -11,7 +11,6 @@ import com.joaomgcd.taskerpluginlibrary.input.TaskerInput
 import com.joaomgcd.taskerpluginlibrary.runner.TaskerPluginResult
 import com.joaomgcd.taskerpluginlibrary.runner.TaskerPluginResultSucess
 import dev.meinside.taskergeminiplugin.R
-import java.io.File
 
 class Runner : TaskerPluginRunnerAction<Input, Output>() {
     override fun run(context: Context, input: TaskerInput<Input>): TaskerPluginResult<Output> {
@@ -33,16 +32,16 @@ class Runner : TaskerPluginRunnerAction<Input, Output>() {
                 val res: GenerateContentResponse = if (imagePath.isEmpty()) {
                     client.models.generateContent(input.regular.model, input.regular.prompt, config)
                 } else {
-                    val imageFile = File(imagePath)
-                    if (!imageFile.exists()) {
-                        generated = context.getString(R.string.error_message_image_not_found).format(imagePath)
-                        return TaskerPluginResultSucess(Output(generated))
+                    val image = when (val read = ImageAccess.read(context, imagePath)) {
+                        is ImageAccess.Read.Failed -> {
+                            generated = context.getString(read.messageRes).format(imagePath)
+                            return TaskerPluginResultSucess(Output(generated))
+                        }
+                        is ImageAccess.Read.Image -> read
                     }
-                    val imageBytes = imageFile.readBytes()
-                    val mimeType = inferMimeType(imagePath)
                     val content = Content.fromParts(
                         Part.fromText(input.regular.prompt),
-                        Part.fromBytes(imageBytes, mimeType)
+                        Part.fromBytes(image.bytes, image.mimeType)
                     )
                     client.models.generateContent(input.regular.model, content, config)
                 }
